@@ -1,0 +1,40 @@
+{
+  "global_root": {
+    "value": "b944852e2fe57dc1de8663c7b0cd1c8c3a7389a8214c4801040308c455527cdd"
+  },
+  "local_tree": {
+    "local_root": {
+      "value": "b944852e2fe57dc1de8663c7b0cd1c8c3a7389a8214c4801040308c455527cdd"
+    },
+    "inclusion_proof": {
+      "metadata": {
+        "timestamp": 1679675299,
+        "algorithm": "sha256",
+        "encoding": "utf_8",
+        "security": true
+      },
+      "offset": 1,
+      "path": [
+        [
+          1,
+          "825d26d1cb81fd28f0687f0f1bc71aa09b2dd6734dcd7e2e39c3a44ec665191c"
+        ],
+        [
+          -1,
+          "18d488082ee80f78698b71e256b875db835518cefc1859b7bdb9e062dd193099"
+        ],
+        [
+          1,
+          "a1322da2185552ed12935bf3d02c59641c122404c5e112f5f9cbf55bd36ae455"
+        ],
+        [
+          -1,
+          "397f63b5a89d151105c6395c4c9dce5a8fce065adbb0a2dca587646a4fda1743"
+        ]
+      ]
+    },
+    "data": {
+      "inclusion_proof": "<inclusion_proof_object>"
+    }
+  }
+}
