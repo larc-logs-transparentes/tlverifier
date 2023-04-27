@@ -10,37 +10,47 @@ def verify_inclusion_proof(proof, root, data, expected_index=None):
     try:
         proof_des = MerkleProof.deserialize(proof)
         verify_inclusion(data, root, proof_des)
-        return True, None
+        return {"success": True}
     except InvalidProof as invalid_e:
-        return False, invalid_e
+        return {"success": False, "exception": invalid_e}
     except InvalidChallenge as invalid_e:
-        return False, invalid_e
+        return {"success": False, "exception": invalid_e}
     except Exception as invalid_e:
-        return False, invalid_e
+        return {"success": False, "exception": invalid_e}
 
 
 def verify_consistency_proof(first_root, second_root, proof):
     try:
         verify_consistency(first_root, second_root, proof)
-        return True, None
+        return {"success": True}
     except InvalidProof as invalid_e:
-        return False, invalid_e
+        return {"success": False, "exception": invalid_e}
     except InvalidChallenge as invalid_e:
-        return False, invalid_e
+        return {"success": False, "exception": invalid_e}
     except Exception as invalid_e:
-        return False, invalid_e
+        return {"success": False, "exception": invalid_e}
 
 
-def verify_single_data(proof, proof_global, local_root, global_root, data):
-    # if proof['global_root']['value'] != global_root:
-    #     return False
+def verify_single_data(proof, global_root, data):
+    local_root = proof["local_tree"]["local_root"]["value"]
+    global_root_in_proof = proof["global_root"]["value"]
+    local_proof = proof["local_tree"]["inclusion_proof"]
+    global_proof = proof["data"]["inclusion_proof"]
 
-    inclusion_proof_local, exception_local = verify_inclusion_proof(proof, local_root, data)
-    inclusion_proof_global, exception_global = verify_inclusion_proof(proof_global, global_root, local_root)
+    if global_root_in_proof != global_root:
+        return {"success": False, "exception": "Global Root in proof different from Global Root from trusted source"}
+
+    local_tree_inclusion_verification = verify_inclusion_proof(local_proof, local_root, data)
+    inclusion_proof_local = local_tree_inclusion_verification["success"]
+    exception_local = local_tree_inclusion_verification["exception"] if not inclusion_proof_local else None
+
+    global_tree_inclusion_verification = verify_inclusion_proof(global_proof, global_root, local_root)
+    inclusion_proof_global = global_tree_inclusion_verification["success"]
+    exception_global = global_tree_inclusion_verification["exception"] if not inclusion_proof_global else None
 
     if not inclusion_proof_local:
-        return False, exception_local
+        return {"success": False, "exception": exception_local}
     elif not inclusion_proof_global:
-        return False, exception_global
+        return {"success": False, "exception": exception_global}
     else:
-        return True, None
+        return {"success": True}

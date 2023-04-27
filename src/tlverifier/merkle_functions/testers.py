@@ -12,11 +12,11 @@ def test_inclusion_proof():
 
 def test_single_data():
     proof = get_proof()     # insert global root in this proof
-    local_root = get_local_root()
-    proof_global = get_proof_global_tree()
+    # local_root = get_local_root()
+    # proof_global = get_proof_global_tree()
     trustable_global_root = get_trusted_global_root()
     data = get_data()
-    result = verify_single_data(proof, proof_global, local_root, trustable_global_root, data)
+    result = verify_single_data(proof, trustable_global_root, data)
     print(result)
 
 
@@ -28,3 +28,7 @@ def test_consistency_proof():
     local_root_new = tree.root
     proof = tree.prove_consistency(sub_length, sub_root)
     print(verify_consistency_proof(sub_root, local_root_new, proof))
+
+
+if __name__ == '__main__':
+    test_single_data()

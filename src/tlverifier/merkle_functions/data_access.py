@@ -5,7 +5,7 @@ def get_proof():
     file = open("../mock/mock_dev/t1_proof_bar.json", "r")
     json_file = json.loads(file.read())
     file.close()
-    proof = json_file['local_tree']['inclusion_proof']
+    proof = json_file
     return proof
 
 
