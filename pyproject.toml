@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tlverifier"
-version = "0.0.1"
+version = "0.0.7"
 authors = [
   { name="K. A. Khalil", email="khalil.poli@gmail.com" },
 ]
@@ -16,6 +16,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dynamic = ["dependencies"]
+[tool.setuptools.dynamic]
+dependencies = {file = ["./src/tlverifier/requirements.txt"]}
 
 [project.urls]
 "Homepage" = "https://github.com/larc-logs-transparentes/tlverifier.git"
