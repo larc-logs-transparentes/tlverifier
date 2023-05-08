@@ -1,1 +1,1 @@
-pymerkle~=4.0.0
+pymerkle-logsTransparentes~=0.0.3

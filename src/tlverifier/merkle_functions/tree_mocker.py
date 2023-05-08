@@ -1,4 +1,4 @@
-from pymerkle import MerkleTree
+from pymerkle_logsTransparentes import MerkleTree
 
 
 def make_tree(list_of_data):
