@@ -1,3 +1,6 @@
 .idea/
 dist/
 src/tlverifier.egg-info
+
+venv/
+/docs/_build
