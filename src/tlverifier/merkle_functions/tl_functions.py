@@ -4,9 +4,11 @@ from pymerkle_logsTransparentes.proof import InvalidProof
 
 
 def verify_inclusion_proof(proof, root, data, expected_index=None):
+    """"
     # expected index:
     # index of data must be in the expected index
     # to get actual index use the int values of path
+    """
     try:
         proof_des = MerkleProof.deserialize(proof)
         verify_inclusion(data, root, proof_des)

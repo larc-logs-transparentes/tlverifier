@@ -1,5 +1,5 @@
 =========================
-High Level Verifications
+Simple Verifications
 =========================
 
 
@@ -23,8 +23,4 @@ The most common use case is to verify that a given data is correctly registered 
 This function verifies the path, both on the local tree and on the global tree, and compares the obtained root 
 with the trusted global root.
 
-
-
-Verify the correctness of a election
-=====================================
 

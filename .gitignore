@@ -1,6 +1,9 @@
 .idea/
 dist/
 src/tlverifier.egg-info
+src/tlverifier/__pycache__/
+src/tlverifier/merkle_functions/__pycache__/
+
 
 venv/
-/docs/_build
+src/docs/_build
