@@ -1,7 +1,6 @@
 from pymerkle_logsTransparentes import MerkleTree, MerkleProof, verify_inclusion, verify_consistency
 from pymerkle_logsTransparentes.tree import InvalidChallenge
 from pymerkle_logsTransparentes.proof import InvalidProof
-import requests
 
 
 def verify_inclusion_proof(proof, root, data, expected_index=None):
