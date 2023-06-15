@@ -121,6 +121,13 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
     return {"success": True}
 
 
+def verify_global_tree_history_consistency(consistency_proofs, stored_global_roots=None):
+    if stored_global_roots is not None:
+        if len(consistency_proofs["proofs"]) != len(stored_global_roots["leaves"]):
+            print(len(consistency_proofs["proofs"]), len(stored_global_roots["leaves"]))
+            return {"success": False, "exception": "Consistency proof length is different than stored global roots"}  # if verifification fails return false, else continues
+
+
 def _build_tree(list_of_data):
     m_tree = MerkleTree()
     for data in list_of_data:

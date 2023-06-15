@@ -1,5 +1,5 @@
-from data_access import get_data, get_proof, get_local_root, get_trusted_global_root, get_all_leaf_global_tree, get_all_consistency_proof
-from src.tlverifier.merkle_functions.tl_functions import verify_single_data, verify_inclusion_proof, verify_consistency_proof, verify_local_tree_history_consistency
+from data_access import get_data, get_proof, get_local_root, get_trusted_global_root, get_all_leaf_global_tree, get_all_consistency_proof, get_teste_gab
+from src.tlverifier.merkle_functions.tl_functions import verify_single_data, verify_inclusion_proof, verify_consistency_proof, verify_local_tree_history_consistency, verify_global_tree_history_consistency
 from tree_mocker import make_tree
 
 
@@ -36,8 +36,16 @@ def test_verify_local_tree_history_consistency():
     print(verify_local_tree_history_consistency(all_leaf_global, all_consistency, global_root, tree_name))
 
 
+def test_verify_global_tree_history_consistency():
+    consistency_proofs = get_all_consistency_proof()
+    all_leaf_global_tree = get_all_leaf_global_tree()
+    print(verify_global_tree_history_consistency(consistency_proofs, all_leaf_global_tree))
+
+
 if __name__ == '__main__':
-    test_inclusion_proof()
-    test_single_data()
-    test_consistency_proof()
-    test_verify_local_tree_history_consistency()
+    # test_inclusion_proof()
+    # test_single_data()
+    # test_consistency_proof()
+    # test_verify_local_tree_history_consistency()
+    # test_verify_global_tree_history_consistency()
+    test_gab()
