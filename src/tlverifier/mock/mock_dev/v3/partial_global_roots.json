@@ -1,0 +1,32 @@
+{
+  "roots": [
+    {
+      "status": "ok",
+      "value": null
+    },
+    {
+      "status": "ok",
+      "value": "efdeac3f2bab6b742eb4eb5a30a4068b6c4710bd73fd58e83a2d4ddf2a069440"
+    },
+    {
+      "status": "ok",
+      "value": "58fdb15dd1c1e8653e985601bfc159dae528b6514245c8c78758cdc9eb763e90"
+    },
+    {
+      "status": "ok",
+      "value": "71819523a4a7d3caa5e8bddfc2cdfc3ee0e969ae23eee0d183ebdf4a430ab7e8"
+    },
+    {
+      "status": "ok",
+      "value": "340e7be7a0775255aa9c6d8e59308b0e19aac2035a65bb9c4dd39535155d8068"
+    },
+    {
+      "status": "ok",
+      "value": "2beef04b3f227ae24376731b216b2b5c78a9d8d647878d97ac891130e9125f79"
+    },
+    {
+      "status": "ok",
+      "value": "dced747635b86ea7dd0f3e457bc95f5fc44b2d2660bceec5896c7b94d78bb72d"
+    }
+  ]
+}

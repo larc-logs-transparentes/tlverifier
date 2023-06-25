@@ -25,6 +25,13 @@ def get_trusted_global_root():
     return root_global
 
 
+def get_partial_global_roots():
+    file = open("../mock/mock_dev/v3/partial_global_roots.json", "r")
+    json_file = json.loads(file.read())
+    file.close()
+    return json_file
+
+
 def get_local_root():
     file = open("../mock/mock_dev/v3/t1_root.json", "r")
     json_file = json.loads(file.read())
@@ -42,6 +49,13 @@ def get_all_leaf_global_tree():
 
 def get_all_consistency_proof():
     file = open("../mock/mock_dev/v3/all_consistency_proof_tree1.json", "r")
+    json_file = json.loads(file.read())
+    file.close()
+    return json_file
+
+
+def get_all_consistency_proof_global():
+    file = open("../mock/mock_dev/v3/all_consistency_proof_global.json", "r")
     json_file = json.loads(file.read())
     file.close()
     return json_file

@@ -107,6 +107,8 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
             return {"success": False, "exception": "Global tree data and Consistency proofs do not match"}  # if comparison fails return false, else continues
 
     # Verify consistency proofs
+    # consistency_proofs_verification = _verify_consistency_proofs(consistency_proofs['proofs'])
+    # return consistency_proofs_verification
     consistency_proofs_list = consistency_proofs['proofs']  # list of proofs from json object
     for proofs in zip(consistency_proofs_list, consistency_proofs_list[1:]):    # iterate in pairs
         first_root = bytes(proofs[0]['root']['value'], "utf_8")
@@ -122,10 +124,22 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
 
 
 def verify_global_tree_history_consistency(consistency_proofs, stored_global_roots=None):
+    # If roots not None, create tree with roots as leaves
     if stored_global_roots is not None:
-        if len(consistency_proofs["proofs"]) != len(stored_global_roots["leaves"]):
-            print(len(consistency_proofs["proofs"]), len(stored_global_roots["leaves"]))
-            return {"success": False, "exception": "Consistency proof length is different than stored global roots"}  # if verifification fails return false, else continues
+        proofs = consistency_proofs["proofs"]
+        partial_roots = stored_global_roots["roots"]
+        for root in partial_roots[1:]:
+            is_partial_root_in_proofs = False
+            for proof in proofs:
+                if root["value"] == proof["root"]["value"]:
+                    is_partial_root_in_proofs = True
+                    break
+            if not is_partial_root_in_proofs:
+                return {"success": False, "exception": "Consistency proof is false"}  # if verification fails return false, else continues
+
+    # Verify consistency proofs
+    consistency_proofs_verification = _verify_consistency_proofs(consistency_proofs['proofs'])
+    return consistency_proofs_verification
 
 
 def _build_tree(list_of_data):
@@ -133,3 +147,18 @@ def _build_tree(list_of_data):
     for data in list_of_data:
         m_tree.append_entry(data)
     return m_tree
+
+
+def _verify_consistency_proofs(consistency_proofs_list):
+    for proofs in zip(consistency_proofs_list, consistency_proofs_list[1:]):  # iterate in pairs (n and n+1)
+        first_root = bytes(proofs[0]['root']['value'], "utf_8")
+        second_root = bytes(proofs[1]['root']['value'], "utf_8")
+        consistency_proof = proofs[1]['consistency_proof']
+        consistency_proof = MerkleProof.deserialize(consistency_proof)
+        verification = verify_consistency_proof(first_root, second_root, consistency_proof)  # consistency verification
+        if verification["success"] is False:
+            return {"success": False,
+                    "exception": "Consistency proof is false"}  # if verification fails return false, else continues
+
+    # if every verification passes return true
+    return {"success": True}
