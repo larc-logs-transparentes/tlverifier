@@ -106,9 +106,7 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
         if found is False:
             return {"success": False, "exception": "Global tree data and Consistency proofs do not match"}  # if comparison fails return false, else continues
 
-    # Verify consistency proofs
-    # consistency_proofs_verification = _verify_consistency_proofs(consistency_proofs['proofs'])
-    # return consistency_proofs_verification
+    # Verify consistency proof
     consistency_proofs_list = consistency_proofs['proofs']  # list of proofs from json object
     for proofs in zip(consistency_proofs_list, consistency_proofs_list[1:]):    # iterate in pairs
         first_root = bytes(proofs[0]['root']['value'], "utf_8")
@@ -128,16 +126,13 @@ def verify_global_tree_history_consistency(consistency_proofs, stored_global_roo
     if stored_global_roots is not None:
         proofs = consistency_proofs["proofs"]
         partial_roots = stored_global_roots["roots"]
-        for root in partial_roots[1:]:
-            is_partial_root_in_proofs = False
-            for proof in proofs:
-                if root["value"] == proof["root"]["value"]:
-                    is_partial_root_in_proofs = True
-                    break
-            if not is_partial_root_in_proofs:
-                return {"success": False, "exception": "Consistency proof is false"}  # if verification fails return false, else continues
 
-    # Verify consistency proofs
+        # check if partial roots are consistent with proofs
+        comparison = _compare_consistency_proofs_to_partial_roots(proofs, partial_roots)
+        if not comparison:
+            return {"success": False, "exception": "Consistency proof is false"}  # if verification fails return false, else continue
+
+    # Verify consistency of proofs
     consistency_proofs_verification = _verify_consistency_proofs(consistency_proofs['proofs'])
     return consistency_proofs_verification
 
@@ -162,3 +157,21 @@ def _verify_consistency_proofs(consistency_proofs_list):
 
     # if every verification passes return true
     return {"success": True}
+
+
+def _compare_consistency_proofs_to_partial_roots(proofs, roots):
+    # For each root, iterate all proofs
+    for root in roots[1:]:
+        is_partial_root_in_proofs = False   # assume they don't match
+        for proof in proofs:    # for each proof, check if they match
+            if root["value"] == proof["root"]["value"] and \
+                    root["tree_size"] == proof["root"]["tree_size"] and \
+                    root["signature"] == proof["root"]["signature"] and \
+                    root["timestamp"] == proof["root"]["timestamp"]:    # if all properties match
+                is_partial_root_in_proofs = True    # set True
+                break   # and skip to the next root
+        if not is_partial_root_in_proofs:   # if any root does not match any proof
+            return False    # return false
+
+    # if no root is false, return true
+    return True
