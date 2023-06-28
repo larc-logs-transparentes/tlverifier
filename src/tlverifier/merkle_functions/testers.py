@@ -1,8 +1,5 @@
-import random
-
 from data_access import get_data, get_proof, get_local_root, get_trusted_global_root, get_all_leaf_global_tree, get_all_consistency_proof, get_partial_global_roots, get_all_consistency_proof_global, get_middle_last_roots_from_partial_global
 from src.tlverifier.merkle_functions.tl_functions import verify_single_data, verify_inclusion_proof, verify_consistency_proof, verify_local_tree_history_consistency, verify_global_tree_history_consistency
-from tree_mocker import make_tree
 
 
 def test_inclusion_proof():
