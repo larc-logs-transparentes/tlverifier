@@ -1,4 +1,6 @@
-from data_access import get_data, get_proof, get_local_root, get_trusted_global_root, get_all_leaf_global_tree, get_all_consistency_proof, get_partial_global_roots, get_all_consistency_proof_global
+import random
+
+from data_access import get_data, get_proof, get_local_root, get_trusted_global_root, get_all_leaf_global_tree, get_all_consistency_proof, get_partial_global_roots, get_all_consistency_proof_global, get_middle_last_roots_from_partial_global
 from src.tlverifier.merkle_functions.tl_functions import verify_single_data, verify_inclusion_proof, verify_consistency_proof, verify_local_tree_history_consistency, verify_global_tree_history_consistency
 from tree_mocker import make_tree
 
@@ -19,13 +21,8 @@ def test_single_data():
 
 
 def test_consistency_proof():
-    tree = make_tree([b'foo', b'bar', b'baz', b'qux', b'tev'])  # create tree
-    sub_root = tree.root    # get root (will be partial)
-    sub_length = tree.length    # get length
-    tree.append_entry(b'kjh')   # append new leaf
-    local_root_new = tree.root  # get new root
-    proof = tree.prove_consistency(sub_length, sub_root)    # get proof of tree consistency
-    print(verify_consistency_proof(sub_root, local_root_new, proof))
+    middle_root_value, middle_proof, last_root_value = get_middle_last_roots_from_partial_global()
+    print(verify_consistency_proof(middle_root_value, last_root_value, middle_proof))
 
 
 def test_verify_local_tree_history_consistency():
@@ -45,6 +42,6 @@ def test_verify_global_tree_history_consistency():
 if __name__ == '__main__':
     # test_inclusion_proof()
     # test_single_data()
-    # test_consistency_proof()
+    test_consistency_proof()
     # test_verify_local_tree_history_consistency()
-    test_verify_global_tree_history_consistency()
+    # test_verify_global_tree_history_consistency()
