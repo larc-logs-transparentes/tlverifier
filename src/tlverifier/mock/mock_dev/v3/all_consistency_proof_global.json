@@ -1,0 +1,163 @@
+{
+  "status": "ok",
+  "proofs": [
+    {
+      "root": {
+        "value": "efdeac3f2bab6b742eb4eb5a30a4068b6c4710bd73fd58e83a2d4ddf2a069440",
+        "tree_name": "global_tree",
+        "tree_size": 1,
+        "signature": "bbf7e55fc3e28ab38be11c9a1baee27e14651680ba33354ccac9ab77e95b3b5608ecbd52538013ee8882bf17291868d72dfc66cf0418fdaad2c6a3f72b7c7801",
+        "timestamp": "2023-06-20T12:20:12.573073"
+      },
+      "consistency_proof": null
+    },
+    {
+      "root": {
+        "value": "58fdb15dd1c1e8653e985601bfc159dae528b6514245c8c78758cdc9eb763e90",
+        "tree_name": "global_tree",
+        "tree_size": 2,
+        "signature": "e7944a1b37804d321e7265a48d06cc4c1ceb5429bcfa851d63a22246d459fa47a29cc8c384148cb89606dd62f518c5bc480f19f5beb687358e7a9ce7bc870904",
+        "timestamp": "2023-06-20T12:20:15.757602"
+      },
+      "consistency_proof": {
+        "metadata": {
+          "timestamp": 1687274415,
+          "algorithm": "sha256",
+          "encoding": "utf_8",
+          "security": true
+        },
+        "offset": 0,
+        "path": [
+          [
+            1,
+            "efdeac3f2bab6b742eb4eb5a30a4068b6c4710bd73fd58e83a2d4ddf2a069440"
+          ],
+          [
+            1,
+            "3cdd216fd5d67b1bd7da19fa0d6b48080cd71c2d987cea82f3ae418783c6cf2c"
+          ]
+        ]
+      }
+    },
+    {
+      "root": {
+        "value": "71819523a4a7d3caa5e8bddfc2cdfc3ee0e969ae23eee0d183ebdf4a430ab7e8",
+        "tree_name": "global_tree",
+        "tree_size": 3,
+        "signature": "7308060a332b4b02af44554ad7450e2c71495b74b7b6fb084f70378477c4a4aa2fe7c0d52a8f2bca7baaea2ca1bb8e8fcd53249d3c313ac834ed3defe5bf4d0f",
+        "timestamp": "2023-06-20T12:20:19.553394"
+      },
+      "consistency_proof": {
+        "metadata": {
+          "timestamp": 1687274419,
+          "algorithm": "sha256",
+          "encoding": "utf_8",
+          "security": true
+        },
+        "offset": 0,
+        "path": [
+          [
+            1,
+            "58fdb15dd1c1e8653e985601bfc159dae528b6514245c8c78758cdc9eb763e90"
+          ],
+          [
+            1,
+            "bbe4c220f99257a317799d45095bb71970d04e4e0b50ce86e097ae2beb57acd0"
+          ]
+        ]
+      }
+    },
+    {
+      "root": {
+        "value": "340e7be7a0775255aa9c6d8e59308b0e19aac2035a65bb9c4dd39535155d8068",
+        "tree_name": "global_tree",
+        "tree_size": 4,
+        "signature": "674aa41c4f00f24778eb4570413542d3438fde87571fe22da58793bdde9febf71b419d62a73e2611e6e6fc8c84ad295d6e0642fb0062176ea2b2ff6dd7593f00",
+        "timestamp": "2023-06-20T12:20:24.906798"
+      },
+      "consistency_proof": {
+        "metadata": {
+          "timestamp": 1687274424,
+          "algorithm": "sha256",
+          "encoding": "utf_8",
+          "security": true
+        },
+        "offset": 1,
+        "path": [
+          [
+            1,
+            "58fdb15dd1c1e8653e985601bfc159dae528b6514245c8c78758cdc9eb763e90"
+          ],
+          [
+            1,
+            "bbe4c220f99257a317799d45095bb71970d04e4e0b50ce86e097ae2beb57acd0"
+          ],
+          [
+            -1,
+            "4474c15d9defa52074694863f6d91553cf70506625ed92c0fe746d05ed42dddc"
+          ]
+        ]
+      }
+    },
+    {
+      "root": {
+        "value": "2beef04b3f227ae24376731b216b2b5c78a9d8d647878d97ac891130e9125f79",
+        "tree_name": "global_tree",
+        "tree_size": 5,
+        "signature": "ea3065b00a3e1a7d84d460f2613054d920a1357775be85d1e854747be299a008cb728ef990cb4047c8f95b1aadd248b37e8a019cb5ddf89c1db4b760afdd0b04",
+        "timestamp": "2023-06-20T12:20:44.767473"
+      },
+      "consistency_proof": {
+        "metadata": {
+          "timestamp": 1687274444,
+          "algorithm": "sha256",
+          "encoding": "utf_8",
+          "security": true
+        },
+        "offset": 0,
+        "path": [
+          [
+            1,
+            "340e7be7a0775255aa9c6d8e59308b0e19aac2035a65bb9c4dd39535155d8068"
+          ],
+          [
+            1,
+            "2cea4ba076bc97eb6e27bb8fafac459f702751274d61fdcc8a906e7819ab7498"
+          ]
+        ]
+      }
+    },
+    {
+      "root": {
+        "value": "dced747635b86ea7dd0f3e457bc95f5fc44b2d2660bceec5896c7b94d78bb72d",
+        "tree_name": "global_tree",
+        "tree_size": 6,
+        "signature": "4f89aaa5184040496661641b5fc4f276df08c8e2f1310a767ff4b10b4acbd4138108d6b7f82ac13f8ad9dceb342108e19fb94673ac3d420a2d2dd81cec640800",
+        "timestamp": "2023-06-20T12:20:57.572816"
+      },
+      "consistency_proof": {
+        "metadata": {
+          "timestamp": 1687274457,
+          "algorithm": "sha256",
+          "encoding": "utf_8",
+          "security": true
+        },
+        "offset": 1,
+        "path": [
+          [
+            1,
+            "340e7be7a0775255aa9c6d8e59308b0e19aac2035a65bb9c4dd39535155d8068"
+          ],
+          [
+            1,
+            "2cea4ba076bc97eb6e27bb8fafac459f702751274d61fdcc8a906e7819ab7498"
+          ],
+          [
+            -1,
+            "434e351c91bb1c8dabf3397f448319c91e0157dc0b301fcf92284db31211b28c"
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,6 +1,5 @@
-from data_access import get_data, get_proof, get_local_root, get_trusted_global_root, get_proof_global_tree
-from src.tlverifier.merkle_functions.tl_functions import verify_single_data, verify_inclusion_proof, verify_consistency_proof
-from tree_mocker import make_tree
+from data_access import get_data, get_proof, get_local_root, get_trusted_global_root, get_all_leaf_global_tree, get_all_consistency_proof, get_partial_global_roots, get_all_consistency_proof_global, get_middle_last_roots_from_partial_global
+from src.tlverifier.merkle_functions.tl_functions import verify_single_data, verify_inclusion_proof, verify_consistency_proof, verify_local_tree_history_consistency, verify_global_tree_history_consistency
 
 
 def test_inclusion_proof():
@@ -19,16 +18,27 @@ def test_single_data():
 
 
 def test_consistency_proof():
-    tree = make_tree([b'foo', b'bar', b'baz', b'qux', b'tev'])  # create tree
-    sub_root = tree.root    # get root (will be partial)
-    sub_length = tree.length    # get length
-    tree.append_entry(b'kjh')   # append new leaf
-    local_root_new = tree.root  # get new root
-    proof = tree.prove_consistency(sub_length, sub_root)    # get proof of tree consistency
-    print(verify_consistency_proof(sub_root, local_root_new, proof))
+    middle_root_value, middle_proof, last_root_value = get_middle_last_roots_from_partial_global()
+    print(verify_consistency_proof(middle_root_value, last_root_value, middle_proof))
+
+
+def test_verify_local_tree_history_consistency():
+    all_leaf_global = get_all_leaf_global_tree()
+    all_consistency = get_all_consistency_proof()
+    global_root = get_trusted_global_root()
+    tree_name = "tree1"
+    print(verify_local_tree_history_consistency(all_leaf_global, all_consistency, global_root, tree_name))
+
+
+def test_verify_global_tree_history_consistency():
+    consistency_proofs = get_all_consistency_proof_global()
+    consistency_proofs_stored = get_partial_global_roots()
+    print(verify_global_tree_history_consistency(consistency_proofs, consistency_proofs_stored))
 
 
 if __name__ == '__main__':
-    test_inclusion_proof()
-    test_single_data()
+    # test_inclusion_proof()
+    # test_single_data()
     test_consistency_proof()
+    # test_verify_local_tree_history_consistency()
+    # test_verify_global_tree_history_consistency()
