@@ -4,4 +4,4 @@
 
      Simple Verifications <simple-verifications>
      Verify All Election <verify-all-election>
-    ..  References <modules>
+     References <modules>
