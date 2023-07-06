@@ -44,8 +44,8 @@ def verify_single_data(proof, global_root, data):
 
     # get global root and proof of local root in global tree
     global_root_in_proof = proof["global_root"]["value"]
-    local_proof = proof["local_tree"]["inclusion_proof"]
-    global_proof = proof["data"]["inclusion_proof"]
+    local_proof = proof["data"]["inclusion_proof"]
+    global_proof = proof["local_tree"]["inclusion_proof"]
 
     # compare global_root from "proof" and from "trusted source", if different, return false
     if global_root_in_proof != global_root:
