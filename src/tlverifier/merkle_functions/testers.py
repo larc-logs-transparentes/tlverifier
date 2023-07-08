@@ -37,8 +37,8 @@ def test_verify_global_tree_history_consistency():
 
 
 if __name__ == '__main__':
-    # test_inclusion_proof()
+    test_inclusion_proof()
     test_single_data()
-    # test_consistency_proof()
-    # test_verify_local_tree_history_consistency()
-    # test_verify_global_tree_history_consistency()
+    test_consistency_proof()
+    test_verify_local_tree_history_consistency()
+    test_verify_global_tree_history_consistency()

@@ -37,9 +37,8 @@ def verify_single_data(proof, global_root, data):
     # get local root value as string
     local_root_value = proof["local_tree"]["local_root"]["value"]
 
-    # transform local root value in root to bytes, then everything to one big string
+    # transform local root value in root to one big string
     local_root = proof["local_tree"]["local_root"]
-    local_root['value'] = bytes(local_root['value'], "utf_8")
     local_root = str(local_root)
 
     # get global root and proof of local root in global tree
@@ -76,9 +75,8 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
     leaves_in_tree = []
     for leaf in global_tree_data['leaves']:
         leaf_value = leaf['value']  # 3-tuple with root value, tree name and size
-        leaf['value']['value'] = bytes(leaf['value']['value'], "utf-8")     # transform only root hash to bytes
-        leaf_bytes = str(leaf_value)    # transform the whole tuple to a single string
-        leaves_in_tree.append(leaf_bytes)           # append to array
+        leaf_string = str(leaf_value)    # transform the whole tuple to a single string
+        leaves_in_tree.append(leaf_string)           # append to array
     tree_rebuilt = _build_tree(leaves_in_tree)          # make tree from array
 
     # compare calculated and trusted global_root
@@ -117,7 +115,7 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
         consistency_proof = MerkleProof.deserialize(consistency_proof)
         verification = verify_consistency_proof(first_root, second_root, consistency_proof)  # consistency verification
         if verification["success"] is False:
-            return {"success": False, "exception": "Consistency proof is false"}  # if verifification fails return false, else continues
+            return {"success": False, "exception": "Consistency proof is false"}    # if verifification fails return false, else continues
 
     # if every verification passes return true
     return {"success": True}
