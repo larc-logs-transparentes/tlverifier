@@ -1,11 +1,14 @@
 import json
 import random
 
+import pkg_resources    # use in package
+
 from pymerkle_logsTransparentes import MerkleProof
 
 
 def get_proof():
-    file = open("../mock/mock_dev/v3/t1_proof_leaf11.json", "r")
+    file_path = _get_file_path("t1_proof_leaf11.json")
+    file = open(file_path, "r")     # open file
     json_file = json.loads(file.read())
     file.close()
     proof = json_file
@@ -13,7 +16,8 @@ def get_proof():
 
 
 def get_proof_global_tree():
-    file = open("../mock/mock_dev/v3/tg_proof_root1.json", "r")
+    file_path = _get_file_path("tg_proof_root1.json")
+    file = open(file_path, "r")
     json_file = json.loads(file.read())
     file.close()
     proof = json_file['proof']
@@ -21,7 +25,8 @@ def get_proof_global_tree():
 
 
 def get_trusted_global_root():
-    file = open("../mock/mock_dev/v3/tg_root.json", "r")
+    file_path = _get_file_path("tg_root.json")
+    file = open(file_path, "r")
     json_file = json.loads(file.read())
     file.close()
     root_global = json_file['value']
@@ -29,7 +34,8 @@ def get_trusted_global_root():
 
 
 def get_partial_global_roots():
-    file = open("../mock/mock_dev/v3/partial_global_roots.json", "r")
+    file_path = _get_file_path("partial_global_roots.json")
+    file = open(file_path, "r")
     json_file = json.loads(file.read())
     file.close()
     return json_file
@@ -67,7 +73,8 @@ def get_middle_last_roots_from_partial_global():
 
 
 def get_local_root():
-    file = open("../mock/mock_dev/v3/t1_root.json", "r")
+    file_path = _get_file_path("t1_root.json")
+    file = open(file_path, "r")
     json_file = json.loads(file.read())
     file.close()
     root_global = json_file['value']
@@ -75,21 +82,24 @@ def get_local_root():
 
 
 def get_all_leaf_global_tree():
-    file = open("../mock/mock_dev/v3/all_leaf_global_tree.json", "r")
+    file_path = _get_file_path("all_leaf_global_tree.json")
+    file = open(file_path, "r")
     json_file = json.loads(file.read())
     file.close()
     return json_file
 
 
 def get_all_consistency_proof():
-    file = open("../mock/mock_dev/v3/all_consistency_proof_tree1.json", "r")
+    file_path = _get_file_path("all_consistency_proof_tree1.json")
+    file = open(file_path, "r")
     json_file = json.loads(file.read())
     file.close()
     return json_file
 
 
 def get_all_consistency_proof_global():
-    file = open("../mock/mock_dev/v3/all_consistency_proof_global.json", "r")
+    file_path = _get_file_path("all_consistency_proof_global.json")
+    file = open(file_path, "r")
     json_file = json.loads(file.read())
     file.close()
     return json_file
@@ -101,6 +111,16 @@ def get_tree_name():
 
 def get_data():
     return b"leaf11"
+
+
+def _get_file_path(file_name):
+    # To run locally
+    # file_path = "../mock/mock_dev/v3/" + file_name  # use in development
+
+    # To generate package
+    file_path = pkg_resources.resource_filename('tlverifier', "/mock/mock_dev/v3/" + file_name)  # use in package
+
+    return file_path
 
 
 if __name__ == '__main__':
