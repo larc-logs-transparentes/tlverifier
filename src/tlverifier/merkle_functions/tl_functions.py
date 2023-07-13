@@ -89,7 +89,6 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
     tree_roots = []
     for leaf in global_tree_data['leaves']:
         if leaf['value']['tree_name'] == tree_name:
-            leaf['value']['value'] = leaf['value']['value'].decode()
             tree_roots.append(leaf['value'])
 
     # 2. get from consistency_proofs all root objects as dicts
