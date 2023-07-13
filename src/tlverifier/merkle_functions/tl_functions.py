@@ -8,6 +8,10 @@ def verify_inclusion_proof(proof, root, data, expected_index=None):
     # expected index:
     # index of data must be in the expected index
     # to get actual index use the int values of path
+    #
+    # proof = dict
+    # root = string
+    # data = bytes
     """
     try:
         proof_des = MerkleProof.deserialize(proof)
@@ -22,6 +26,11 @@ def verify_inclusion_proof(proof, root, data, expected_index=None):
 
 
 def verify_consistency_proof(first_root, second_root, proof):
+    """"
+    # first_root = bytes
+    # second_root = bytes
+    # proof = MerkleProof
+    """
     try:
         verify_consistency(first_root, second_root, proof)
         return {"success": True}
@@ -34,6 +43,13 @@ def verify_consistency_proof(first_root, second_root, proof):
 
 
 def verify_single_data(proof, global_root, data):
+    """"
+    # Verify inclusion proof both in local and global trees
+    #
+    # proof = dict
+    # global_root = string
+    # data = bytes
+    """
     # get local root value as string
     local_root_value = proof["local_tree"]["local_root"]["value"]
 
@@ -71,6 +87,16 @@ def verify_single_data(proof, global_root, data):
 
 
 def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, trusted_global_root, tree_name):
+    """"
+    # 1. Rebuild global tree
+    # 2. Compare calculated and trusted global roots
+    # 3. Compare local roots with to roots in consistency proof
+    # 4. Verify consistency proof
+    #
+    # proof = dict
+    # global_root = string
+    # data = bytes
+    """
     # rebuild global_tree from global tree leaves
     leaves_in_tree = []
     for leaf in global_tree_data['leaves']:
@@ -121,6 +147,14 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
 
 
 def verify_global_tree_history_consistency(consistency_proofs, stored_global_roots=None):
+    """"
+    # 1. Rebuild global tree
+    # 2. Verify if partial roots are consistent with proofs
+    # 3. Verify consistency proofs
+    #
+    # consistency_proofs = dict
+    # (optional) stored_global_roots = dict
+    """
     # If roots not None, create tree with roots as leaves
     if stored_global_roots is not None:
         proofs = consistency_proofs["proofs"]
