@@ -171,6 +171,13 @@ def verify_global_tree_history_consistency(consistency_proofs, stored_global_roo
 
 
 def _build_tree(list_of_data):
+    """"
+    # Internal function
+    # Build tree
+    #
+    # list_of_data: list of BUs in the order for building
+    #
+    """
     m_tree = MerkleTree()
     for data in list_of_data:
         m_tree.append_entry(data)
@@ -178,6 +185,13 @@ def _build_tree(list_of_data):
 
 
 def _verify_consistency_proofs(consistency_proofs_list):
+    """"
+    # Internal function
+    # Verify if proofs are consistent
+    #
+    # consistency_proofs_list: proofs to be verified
+    #
+    """
     for proofs in zip(consistency_proofs_list, consistency_proofs_list[1:]):  # iterate in pairs (n and n+1)
         first_root = bytes(proofs[0]['root']['value'], "utf_8")
         second_root = bytes(proofs[1]['root']['value'], "utf_8")
@@ -193,6 +207,14 @@ def _verify_consistency_proofs(consistency_proofs_list):
 
 
 def _compare_consistency_proofs_to_partial_roots(proofs, roots):
+    """"
+    # Internal function
+    # Compare consistency proofs to partial roots
+    #
+    # proofs: list of proofs
+    # roots: list of partial roots
+    #
+    """
     # For each root, iterate all proofs
     for root in roots[1:]:
         is_partial_root_in_proofs = False   # assume they don't match
