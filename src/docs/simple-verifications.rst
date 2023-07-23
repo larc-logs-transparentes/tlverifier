@@ -24,3 +24,34 @@ This function verifies the path, both on the local tree and on the global tree, 
 with the trusted global root.
 
 
+Verifying inclusion proof
+=========================
+
+Function checks if inclusion proof is valid and correct.
+
+.. code-block::
+
+    # 1. Deserialize proof
+    # 2. Verify inclusion checking data, root and proof
+    #
+    # proof = dict
+    # root = string
+    # data = bytes
+
+This function casts proof to MerkleTreeProof object from dict, and verify if proof is valid and correct.
+
+
+Verifying consistency proof
+=========================
+
+Function checks if inclusion proof is consistent with the roots.
+
+.. code-block::
+
+    # Verify consistency on Tree
+    #
+    # first_root = bytes
+    # second_root = bytes
+    # proof = MerkleProof
+
+Direct verification in tree.

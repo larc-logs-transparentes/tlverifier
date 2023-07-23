@@ -5,13 +5,15 @@ from pymerkle_logsTransparentes.proof import InvalidProof
 
 def verify_inclusion_proof(proof, root, data, expected_index=None):
     """"
-    # expected index:
-    # index of data must be in the expected index
-    # to get actual index use the int values of path
+    # Deserialize proof
+    # Verify inclusion checking data, root and proof
     #
     # proof = dict
     # root = string
     # data = bytes
+    # [unused] expected index:
+    # index of data must be in the expected index
+    # to get actual index use the int values of path
     """
     try:
         proof_des = MerkleProof.deserialize(proof)
@@ -27,6 +29,8 @@ def verify_inclusion_proof(proof, root, data, expected_index=None):
 
 def verify_consistency_proof(first_root, second_root, proof):
     """"
+    # Verify consistency on Tree
+    #
     # first_root = bytes
     # second_root = bytes
     # proof = MerkleProof
