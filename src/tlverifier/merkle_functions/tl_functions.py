@@ -4,7 +4,7 @@ from pymerkle_logsTransparentes.proof import InvalidProof
 
 
 def verify_inclusion_proof(proof, root, data, expected_index=None):
-    """"
+    """
     # Deserialize proof
     # Verify inclusion checking data, root and proof
     #
@@ -28,7 +28,7 @@ def verify_inclusion_proof(proof, root, data, expected_index=None):
 
 
 def verify_consistency_proof(first_root, second_root, proof):
-    """"
+    """
     # Verify consistency on Tree
     #
     # first_root = bytes
@@ -47,7 +47,7 @@ def verify_consistency_proof(first_root, second_root, proof):
 
 
 def verify_single_data(proof, global_root, data):
-    """"
+    """
     # Verify inclusion proof both in local and global trees
     #
     # proof = dict
@@ -91,7 +91,7 @@ def verify_single_data(proof, global_root, data):
 
 
 def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, trusted_global_root, tree_name):
-    """"
+    """
     # 1. Rebuild global tree
     # 2. Compare calculated and trusted global roots
     # 3. Compare local roots with to roots in consistency proof
@@ -151,7 +151,7 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
 
 
 def verify_global_tree_history_consistency(consistency_proofs, stored_global_roots=None):
-    """"
+    """
     # 1. Rebuild global tree
     # 2. Verify if partial roots are consistent with proofs
     # 3. Verify consistency proofs
@@ -175,7 +175,7 @@ def verify_global_tree_history_consistency(consistency_proofs, stored_global_roo
 
 
 def _build_tree(list_of_data):
-    """"
+    """
     # Internal function
     # Build tree
     #
@@ -189,7 +189,7 @@ def _build_tree(list_of_data):
 
 
 def _verify_consistency_proofs(consistency_proofs_list):
-    """"
+    """
     # Internal function
     # Verify if proofs are consistent
     #
@@ -211,7 +211,7 @@ def _verify_consistency_proofs(consistency_proofs_list):
 
 
 def _compare_consistency_proofs_to_partial_roots(proofs, roots):
-    """"
+    """
     # Internal function
     # Compare consistency proofs to partial roots
     #
