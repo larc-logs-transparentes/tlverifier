@@ -5,15 +5,15 @@ from pymerkle_logsTransparentes.proof import InvalidProof
 
 def verify_inclusion_proof(proof, root, data, expected_index=None):
     """
-    # Deserialize proof
-    # Verify inclusion checking data, root and proof
-    #
-    # proof = dict
-    # root = string
-    # data = bytes
-    # [unused] expected index:
-    # index of data must be in the expected index
-    # to get actual index use the int values of path
+    Deserialize proof and Verify inclusion checking data, root and proof
+
+    :param proof: dictionary with Proof data
+    :type proof: dictionary
+    :param root: string of root
+    :type root: string
+    :param data: actual data inserted on tree to be verified
+    :type data: bytes
+    :rtype: dict {"success": Bool, "exception": String}
     """
     try:
         proof_des = MerkleProof.deserialize(proof)
@@ -29,11 +29,15 @@ def verify_inclusion_proof(proof, root, data, expected_index=None):
 
 def verify_consistency_proof(first_root, second_root, proof):
     """
-    # Verify consistency on Tree
-    #
-    # first_root = bytes
-    # second_root = bytes
-    # proof = MerkleProof
+    Verify consistency on Tree
+
+    :param first_root: dictionary with Root data
+    :type first_root: dictionary
+    :param second_root: dictionary with Root data
+    :type second_root: dictionary
+    :param proof: dictionary with Proof data
+    :type proof: dictionary
+    :rtype: dict {"success": Bool, "exception": String}
     """
     try:
         verify_consistency(first_root, second_root, proof)
@@ -48,11 +52,15 @@ def verify_consistency_proof(first_root, second_root, proof):
 
 def verify_single_data(proof, global_root, data):
     """
-    # Verify inclusion proof both in local and global trees
-    #
-    # proof = dict
-    # global_root = string
-    # data = bytes
+    Verify inclusion proof both in local and global trees
+
+    :param proof: dictionary with Proof data
+    :type proof: dictionary
+    :param global_root: string of root
+    :type global_root: string
+    :param data: actual data inserted on tree to be verified
+    :type data: bytes
+    :rtype: dict {"success": Bool, "exception": String}
     """
     # get local root value as string
     local_root_value = proof["local_tree"]["local_root"]["value"]
@@ -92,14 +100,20 @@ def verify_single_data(proof, global_root, data):
 
 def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, trusted_global_root, tree_name):
     """
-    # 1. Rebuild global tree
-    # 2. Compare calculated and trusted global roots
-    # 3. Compare local roots with to roots in consistency proof
-    # 4. Verify consistency proof
-    #
-    # proof = dict
-    # global_root = string
-    # data = bytes
+    | Verify consistency of local tree history by doing the following steps:
+
+    1. Rebuild global tree
+    2. Compare calculated and trusted global roots
+    3. Compare local roots with to roots in consistency proof
+    4. Verify consistency proof
+
+    :param proof: dictionary with Proof data
+    :type proof: dictionary
+    :param global_root: string of root
+    :type global_root: string
+    :param data: actual data inserted on tree to be verified
+    :type data: bytes
+    :rtype: dict {"success": Bool, "exception": String}
     """
     # rebuild global_tree from global tree leaves
     leaves_in_tree = []
@@ -152,12 +166,17 @@ def verify_local_tree_history_consistency(global_tree_data, consistency_proofs, 
 
 def verify_global_tree_history_consistency(consistency_proofs, stored_global_roots=None):
     """
-    # 1. Rebuild global tree
-    # 2. Verify if partial roots are consistent with proofs
-    # 3. Verify consistency proofs
-    #
-    # consistency_proofs = dict
-    # (optional) stored_global_roots = dict
+    | Verify consistency of global tree history by doing the following steps:
+
+    1. Rebuild global tree
+    2. Verify if partial roots are consistent with proofs
+    3. Verify consistency proofs
+
+    :param consistency_proofs: dictionary with status and list of proofs
+    :type consistency_proofs: dictionary
+    :param stored_global_roots: dict which contains a list of partial roots
+    :type stored_global_roots: dictionary
+    :rtype: dict {"success": Bool, "exception": String}
     """
     # If roots not None, create tree with roots as leaves
     if stored_global_roots is not None:
@@ -176,11 +195,12 @@ def verify_global_tree_history_consistency(consistency_proofs, stored_global_roo
 
 def _build_tree(list_of_data):
     """
-    # Internal function
-    # Build tree
-    #
-    # list_of_data: list of BUs in the order for building
-    #
+    | Internal function
+    | Build tree
+
+    :param list_of_data: list of BUs in the order for building
+    :type list_of_data: list
+    :rtype: MerkleTree()
     """
     m_tree = MerkleTree()
     for data in list_of_data:
@@ -190,11 +210,12 @@ def _build_tree(list_of_data):
 
 def _verify_consistency_proofs(consistency_proofs_list):
     """
-    # Internal function
-    # Verify if proofs are consistent
-    #
-    # consistency_proofs_list: proofs to be verified
-    #
+    | Internal function
+    | Verify if proofs are consistent
+
+    :param consistency_proofs_list: list of Proofs
+    :type consistency_proofs_list: list
+    :rtype: dict {"success": Bool, "exception": String}
     """
     for proofs in zip(consistency_proofs_list, consistency_proofs_list[1:]):  # iterate in pairs (n and n+1)
         first_root = bytes(proofs[0]['root']['value'], "utf_8")
@@ -212,12 +233,14 @@ def _verify_consistency_proofs(consistency_proofs_list):
 
 def _compare_consistency_proofs_to_partial_roots(proofs, roots):
     """
-    # Internal function
-    # Compare consistency proofs to partial roots
-    #
-    # proofs: list of proofs
-    # roots: list of partial roots
-    #
+    | Internal function
+    | Compare consistency proofs to partial roots
+
+    :param proofs: list of Proofs
+    :type proofs: list
+    :param roots: list of partial roots
+    :type roots: list
+    :rtype: Bool
     """
     # For each root, iterate all proofs
     for root in roots[1:]:
