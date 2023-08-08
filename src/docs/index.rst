@@ -16,31 +16,35 @@ Transparenty Logs Verifier
 ...........................
 
 
-TLverifier is a tool for verifying the integrity of the logs from the Transparenty Log project. 
+TLverifier is a tool that verifies the integrity of the logs from the TL-Election. 
+Works with `TLmanager`_.
+
+.. _TLmanager: https://github.com/larc-logs-transparentes/logs-transparentes/tree/main/tlmanager
 
 
 =================
 Installation
 =================
 
+
 .. code-block:: bash
 
-  pip install pymerkle
+  pip install tlverifier
 
 =================
-Usage
+Usage 
 =================
 .. code-block:: python
 
    from tlverifier import tlverifier
 
-   # get proof from the web
-   # get trustable root from the web
-   # get data to verify (e.g., BU)
+    # obs: using dummy functions
+    proof = tlverifier.get_proof()                       # get proof from the tlmanager
+    global_root = tlverifier.get_trusted_global_root()   # get trustable root (e.g., from a monitor)
+    data = tlverifier.get_data()                         # get data to verify (e.g., BU)
    
-   # verify proof
-   # print response
 
+    result = verify_single_data(proof, global_root, data)
 
 
 .. toctree::

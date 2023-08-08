@@ -2,7 +2,6 @@
     :maxdepth: 0
     :titlesonly:
 
-     Simple Verifications <simple-verifications>
-     Complex Verifications <complex-verifications>
-     Verify All Election <verify-all-election>
+     Inclusion checks <inclusion-checks>
+     Consistency checks <consistency-checks>
      References <modules>
