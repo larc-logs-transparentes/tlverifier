@@ -1,0 +1,26 @@
+{
+  'roots': [
+    {
+      'status': 'ok',
+      'value': None
+    },
+    {
+      'status': 'ok',
+      'value': '1a1b1c...',
+      'tree_name': 'global_tree',
+      'tree_size': 1,
+      'signature': '1a1b1c...',
+      'timestamp': '2023-06-20T12:20:12.573073'
+    },
+    {
+      'status': 'ok',
+      'value': '1a1b1c...',
+      'tree_name': 'global_tree',
+      'tree_size': 2,
+      'signature': '1a1b1c...',
+      'timestamp': '2023-06-20T12:20:15.757602'
+    },
+    {...},
+    {...},
+  ]
+}

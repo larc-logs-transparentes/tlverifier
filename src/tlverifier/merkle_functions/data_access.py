@@ -115,10 +115,10 @@ def get_data():
 
 def _get_file_path(file_name):
     # To run locally
-    # file_path = "../mock/mock_dev/v3/" + file_name  # use in development
+    file_path = "../mock/mock_dev/v3/" + file_name  # use in development
 
     # To generate package
-    file_path = pkg_resources.resource_filename('tlverifier', "/mock/mock_dev/v3/" + file_name)  # use in package
+    # file_path = pkg_resources.resource_filename('tlverifier', "/mock/mock_dev/v3/" + file_name)  # use in package
 
     return file_path
 
