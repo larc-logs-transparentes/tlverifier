@@ -21,7 +21,7 @@ pip install --extra-index-url https://test.pypi.org/simple/ tlverifier==x.y.z
 ### Functions:
 - verify_inclusion_proof
 - verify_consistency_proof
-- verify_single_data
+- verify_data_entry
 - verify_local_tree_history_consistency
 - verify_global_tree_history_consistency
 
@@ -49,7 +49,7 @@ pip install --extra-index-url https://test.pypi.org/simple/ tlverifier==x.y.z
   - {"success": False, "exception": InvalidChallenge} 
   - {"success": False, "exception": Other}
 
-###### verify_single_data(proof, global_root, data)
+###### verify_data_entry(proof, global_root, data)
 - proof: dictionary
 - global_root: string
 - data: bytes

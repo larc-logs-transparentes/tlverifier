@@ -24,7 +24,6 @@ First, get the data entry proof. You can request it to the TL-Election by passin
 .. code-block:: python
 
     # obs: using dummy functions
-    # KHALIL: eu acho que ficaria mais claro se chamasse essa função (e outras funções) de "tlverifier.get_dummy_proof()". O que acha?
     proof = tlverifier.get_proof()              
 
 

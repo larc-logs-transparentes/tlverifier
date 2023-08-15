@@ -50,7 +50,7 @@ def verify_consistency_proof(first_root, second_root, proof):
         return {"success": False, "exception": invalid_e}
 
 
-def verify_single_data(proof, global_root, data):
+def verify_data_entry(proof, global_root, data):
     """
     Verify inclusion proof both in local and global trees
 
