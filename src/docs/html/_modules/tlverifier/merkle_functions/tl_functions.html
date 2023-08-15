@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tlverifier.merkle_functions.tl_functions &mdash; tlverifier  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            tlverifier
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../menu.html">Inclusion checks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">tlverifier</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tlverifier.merkle_functions.tl_functions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tlverifier.merkle_functions.tl_functions</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pymerkle_logsTransparentes</span> <span class="kn">import</span> <span class="n">MerkleTree</span><span class="p">,</span> <span class="n">MerkleProof</span><span class="p">,</span> <span class="n">verify_inclusion</span><span class="p">,</span> <span class="n">verify_consistency</span>
+<span class="kn">from</span> <span class="nn">pymerkle_logsTransparentes.tree</span> <span class="kn">import</span> <span class="n">InvalidChallenge</span>
+<span class="kn">from</span> <span class="nn">pymerkle_logsTransparentes.proof</span> <span class="kn">import</span> <span class="n">InvalidProof</span>
+
+
+<div class="viewcode-block" id="verify_inclusion_proof"><a class="viewcode-back" href="../../../tlverifier.merkle_functions.html#tlverifier.merkle_functions.tl_functions.verify_inclusion_proof">[docs]</a><span class="k">def</span> <span class="nf">verify_inclusion_proof</span><span class="p">(</span><span class="n">proof</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">expected_index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Deserialize proof and Verify inclusion checking data, root and proof</span>
+
+<span class="sd">    :param proof: dictionary with Proof data</span>
+<span class="sd">    :type proof: dictionary</span>
+<span class="sd">    :param root: string of root</span>
+<span class="sd">    :type root: string</span>
+<span class="sd">    :param data: actual data inserted on tree to be verified</span>
+<span class="sd">    :type data: bytes</span>
+<span class="sd">    :rtype: dict {&quot;success&quot;: Bool, &quot;exception&quot;: String}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">proof_des</span> <span class="o">=</span> <span class="n">MerkleProof</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">proof</span><span class="p">)</span>
+        <span class="n">verify_inclusion</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">proof_des</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">InvalidProof</span> <span class="k">as</span> <span class="n">invalid_e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">invalid_e</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">InvalidChallenge</span> <span class="k">as</span> <span class="n">invalid_e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">invalid_e</span><span class="p">}</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">invalid_e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">invalid_e</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="verify_consistency_proof"><a class="viewcode-back" href="../../../tlverifier.merkle_functions.html#tlverifier.merkle_functions.tl_functions.verify_consistency_proof">[docs]</a><span class="k">def</span> <span class="nf">verify_consistency_proof</span><span class="p">(</span><span class="n">first_root</span><span class="p">,</span> <span class="n">second_root</span><span class="p">,</span> <span class="n">proof</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Verify consistency on Tree</span>
+
+<span class="sd">    :param first_root: dictionary with Root data</span>
+<span class="sd">    :type first_root: dictionary</span>
+<span class="sd">    :param second_root: dictionary with Root data</span>
+<span class="sd">    :type second_root: dictionary</span>
+<span class="sd">    :param proof: dictionary with Proof data</span>
+<span class="sd">    :type proof: dictionary</span>
+<span class="sd">    :rtype: dict {&quot;success&quot;: Bool, &quot;exception&quot;: String}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">verify_consistency</span><span class="p">(</span><span class="n">first_root</span><span class="p">,</span> <span class="n">second_root</span><span class="p">,</span> <span class="n">proof</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">InvalidProof</span> <span class="k">as</span> <span class="n">invalid_e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">invalid_e</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">InvalidChallenge</span> <span class="k">as</span> <span class="n">invalid_e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">invalid_e</span><span class="p">}</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">invalid_e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">invalid_e</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="verify_data_entry"><a class="viewcode-back" href="../../../tlverifier.merkle_functions.html#tlverifier.merkle_functions.tl_functions.verify_data_entry">[docs]</a><span class="k">def</span> <span class="nf">verify_data_entry</span><span class="p">(</span><span class="n">proof</span><span class="p">,</span> <span class="n">global_root</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Verify inclusion proof both in local and global trees</span>
+
+<span class="sd">    :param proof: dictionary with Proof data</span>
+<span class="sd">    :type proof: dictionary</span>
+<span class="sd">    :param global_root: string of root</span>
+<span class="sd">    :type global_root: string</span>
+<span class="sd">    :param data: actual data inserted on tree to be verified</span>
+<span class="sd">    :type data: bytes</span>
+<span class="sd">    :rtype: dict {&quot;success&quot;: Bool, &quot;exception&quot;: String}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># get local root value as string</span>
+    <span class="n">local_root_value</span> <span class="o">=</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;local_tree&quot;</span><span class="p">][</span><span class="s2">&quot;local_root&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+
+    <span class="c1"># transform local root value in root to one big string</span>
+    <span class="n">local_root</span> <span class="o">=</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;local_tree&quot;</span><span class="p">][</span><span class="s2">&quot;local_root&quot;</span><span class="p">]</span>
+    <span class="n">local_root</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">local_root</span><span class="p">)</span>
+
+    <span class="c1"># get global root and proof of local root in global tree</span>
+    <span class="n">global_root_in_proof</span> <span class="o">=</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;global_root&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+    <span class="n">local_proof</span> <span class="o">=</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;inclusion_proof&quot;</span><span class="p">]</span>
+    <span class="n">global_proof</span> <span class="o">=</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;local_tree&quot;</span><span class="p">][</span><span class="s2">&quot;inclusion_proof&quot;</span><span class="p">]</span>
+
+    <span class="c1"># compare global_root from &quot;proof&quot; and from &quot;trusted source&quot;, if different, return false</span>
+    <span class="k">if</span> <span class="n">global_root_in_proof</span> <span class="o">!=</span> <span class="n">global_root</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="s2">&quot;Global Root in proof different from Global Root from trusted source&quot;</span><span class="p">}</span>
+
+    <span class="c1"># verify inclusion of data in local tree, get exception if error</span>
+    <span class="n">local_tree_inclusion_verification</span> <span class="o">=</span> <span class="n">verify_inclusion_proof</span><span class="p">(</span><span class="n">local_proof</span><span class="p">,</span> <span class="n">local_root_value</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">inclusion_proof_local</span> <span class="o">=</span> <span class="n">local_tree_inclusion_verification</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span>
+    <span class="n">exception_local</span> <span class="o">=</span> <span class="n">local_tree_inclusion_verification</span><span class="p">[</span><span class="s2">&quot;exception&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">inclusion_proof_local</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="c1"># verify inclusion of local tree root in global tree, get exception if error</span>
+    <span class="n">local_root</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">local_root</span><span class="p">,</span> <span class="s2">&quot;utf_8&quot;</span><span class="p">)</span>
+    <span class="n">global_tree_inclusion_verification</span> <span class="o">=</span> <span class="n">verify_inclusion_proof</span><span class="p">(</span><span class="n">global_proof</span><span class="p">,</span> <span class="n">global_root</span><span class="p">,</span> <span class="n">local_root</span><span class="p">)</span>
+    <span class="n">inclusion_proof_global</span> <span class="o">=</span> <span class="n">global_tree_inclusion_verification</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span>
+    <span class="n">exception_global</span> <span class="o">=</span> <span class="n">global_tree_inclusion_verification</span><span class="p">[</span><span class="s2">&quot;exception&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">inclusion_proof_global</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="c1"># return exceptions, if any, or success</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">inclusion_proof_local</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">exception_local</span><span class="p">}</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="n">inclusion_proof_global</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="n">exception_global</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="verify_local_tree_history_consistency"><a class="viewcode-back" href="../../../tlverifier.merkle_functions.html#tlverifier.merkle_functions.tl_functions.verify_local_tree_history_consistency">[docs]</a><span class="k">def</span> <span class="nf">verify_local_tree_history_consistency</span><span class="p">(</span><span class="n">global_tree_data</span><span class="p">,</span> <span class="n">consistency_proofs</span><span class="p">,</span> <span class="n">trusted_global_root</span><span class="p">,</span> <span class="n">tree_name</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    | Verify consistency of local tree history by doing the following steps:</span>
+
+<span class="sd">    1. Rebuild global tree</span>
+<span class="sd">    2. Compare calculated and trusted global roots</span>
+<span class="sd">    3. Compare local roots with to roots in consistency proof</span>
+<span class="sd">    4. Verify consistency proof</span>
+
+<span class="sd">    :param proof: dictionary with Proof data</span>
+<span class="sd">    :type proof: dictionary</span>
+<span class="sd">    :param global_root: string of root</span>
+<span class="sd">    :type global_root: string</span>
+<span class="sd">    :param data: actual data inserted on tree to be verified</span>
+<span class="sd">    :type data: bytes</span>
+<span class="sd">    :rtype: dict {&quot;success&quot;: Bool, &quot;exception&quot;: String}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># rebuild global_tree from global tree leaves</span>
+    <span class="n">leaves_in_tree</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">global_tree_data</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">]:</span>
+        <span class="n">leaf_value</span> <span class="o">=</span> <span class="n">leaf</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span>  <span class="c1"># 3-tuple with root value, tree name and size</span>
+        <span class="n">leaf_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">leaf_value</span><span class="p">)</span>    <span class="c1"># transform the whole tuple to a single string</span>
+        <span class="n">leaves_in_tree</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">leaf_string</span><span class="p">)</span>           <span class="c1"># append to array</span>
+    <span class="n">tree_rebuilt</span> <span class="o">=</span> <span class="n">_build_tree</span><span class="p">(</span><span class="n">leaves_in_tree</span><span class="p">)</span>          <span class="c1"># make tree from array</span>
+
+    <span class="c1"># compare calculated and trusted global_root</span>
+    <span class="n">tree_rebuilt_root</span> <span class="o">=</span> <span class="n">tree_rebuilt</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf_8&quot;</span><span class="p">)</span>   <span class="c1"># get root from rebuilt tree</span>
+    <span class="k">if</span> <span class="n">tree_rebuilt_root</span> <span class="o">!=</span> <span class="n">trusted_global_root</span><span class="p">:</span>            <span class="c1"># compare calculated and trusted</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="s2">&quot;Global roots don&#39;t match&quot;</span><span class="p">}</span>  <span class="c1"># if different return false, else continues</span>
+
+    <span class="c1"># Compare found local-roots with those presents on consistency_proofs (divided in 3 parts)</span>
+    <span class="c1"># 1. search on global_tree all roots corresponding to tree_name as dicts</span>
+    <span class="n">tree_roots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">global_tree_data</span><span class="p">[</span><span class="s1">&#39;leaves&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">leaf</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">][</span><span class="s1">&#39;tree_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">tree_name</span><span class="p">:</span>
+            <span class="n">tree_roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">leaf</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">])</span>
+
+    <span class="c1"># 2. get from consistency_proofs all root objects as dicts</span>
+    <span class="n">consistency_proof_roots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">proof</span> <span class="ow">in</span> <span class="n">consistency_proofs</span><span class="p">[</span><span class="s1">&#39;proofs&#39;</span><span class="p">]:</span>
+        <span class="n">consistency_proof_roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">proof</span><span class="p">[</span><span class="s1">&#39;root&#39;</span><span class="p">])</span>
+
+    <span class="c1"># 3. compare tree_roots to consistency_proof_roots</span>
+    <span class="k">for</span> <span class="n">tree_root</span> <span class="ow">in</span> <span class="n">tree_roots</span><span class="p">:</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">consistency_proof_root</span> <span class="ow">in</span> <span class="n">consistency_proof_roots</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">tree_root</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">consistency_proof_root</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tree_root</span><span class="p">[</span><span class="s1">&#39;tree_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">consistency_proof_root</span><span class="p">[</span><span class="s1">&#39;tree_name&#39;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">tree_root</span><span class="p">[</span><span class="s1">&#39;tree_size&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">consistency_proof_root</span><span class="p">[</span><span class="s1">&#39;tree_size&#39;</span><span class="p">]:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">found</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="s2">&quot;Global tree data and Consistency proofs do not match&quot;</span><span class="p">}</span>  <span class="c1"># if comparison fails return false, else continues</span>
+
+    <span class="c1"># Verify consistency proof</span>
+    <span class="n">consistency_proofs_list</span> <span class="o">=</span> <span class="n">consistency_proofs</span><span class="p">[</span><span class="s1">&#39;proofs&#39;</span><span class="p">]</span>  <span class="c1"># list of proofs from json object</span>
+    <span class="k">for</span> <span class="n">proofs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">consistency_proofs_list</span><span class="p">,</span> <span class="n">consistency_proofs_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>    <span class="c1"># iterate in pairs</span>
+        <span class="n">first_root</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">proofs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;root&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="s2">&quot;utf_8&quot;</span><span class="p">)</span>
+        <span class="n">second_root</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">proofs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;root&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="s2">&quot;utf_8&quot;</span><span class="p">)</span>
+        <span class="n">consistency_proof</span> <span class="o">=</span> <span class="n">proofs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;consistency_proof&#39;</span><span class="p">]</span>
+        <span class="n">consistency_proof</span> <span class="o">=</span> <span class="n">MerkleProof</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">consistency_proof</span><span class="p">)</span>
+        <span class="n">verification</span> <span class="o">=</span> <span class="n">verify_consistency_proof</span><span class="p">(</span><span class="n">first_root</span><span class="p">,</span> <span class="n">second_root</span><span class="p">,</span> <span class="n">consistency_proof</span><span class="p">)</span>  <span class="c1"># consistency verification</span>
+        <span class="k">if</span> <span class="n">verification</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="s2">&quot;Consistency proof is false&quot;</span><span class="p">}</span>    <span class="c1"># if verifification fails return false, else continues</span>
+
+    <span class="c1"># if every verification passes return true</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="verify_global_tree_history_consistency"><a class="viewcode-back" href="../../../tlverifier.merkle_functions.html#tlverifier.merkle_functions.tl_functions.verify_global_tree_history_consistency">[docs]</a><span class="k">def</span> <span class="nf">verify_global_tree_history_consistency</span><span class="p">(</span><span class="n">consistency_proofs</span><span class="p">,</span> <span class="n">stored_global_roots</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    | Verify consistency of global tree history by doing the following steps:</span>
+
+<span class="sd">    1. Rebuild global tree</span>
+<span class="sd">    2. Verify if partial roots are consistent with proofs</span>
+<span class="sd">    3. Verify consistency proofs</span>
+
+<span class="sd">    :param consistency_proofs: dictionary with status and list of proofs</span>
+<span class="sd">    :type consistency_proofs: dictionary</span>
+<span class="sd">    :param stored_global_roots: dict which contains a list of partial roots</span>
+<span class="sd">    :type stored_global_roots: dictionary</span>
+<span class="sd">    :rtype: dict {&quot;success&quot;: Bool, &quot;exception&quot;: String}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># If roots not None, create tree with roots as leaves</span>
+    <span class="k">if</span> <span class="n">stored_global_roots</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">proofs</span> <span class="o">=</span> <span class="n">consistency_proofs</span><span class="p">[</span><span class="s2">&quot;proofs&quot;</span><span class="p">]</span>
+        <span class="n">partial_roots</span> <span class="o">=</span> <span class="n">stored_global_roots</span><span class="p">[</span><span class="s2">&quot;roots&quot;</span><span class="p">]</span>
+
+        <span class="c1"># check if partial roots are consistent with proofs</span>
+        <span class="n">comparison</span> <span class="o">=</span> <span class="n">_compare_consistency_proofs_to_partial_roots</span><span class="p">(</span><span class="n">proofs</span><span class="p">,</span> <span class="n">partial_roots</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">comparison</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="s2">&quot;Consistency proof is false&quot;</span><span class="p">}</span>  <span class="c1"># if verification fails return false, else continue</span>
+
+    <span class="c1"># Verify consistency of proofs</span>
+    <span class="n">consistency_proofs_verification</span> <span class="o">=</span> <span class="n">_verify_consistency_proofs</span><span class="p">(</span><span class="n">consistency_proofs</span><span class="p">[</span><span class="s1">&#39;proofs&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">consistency_proofs_verification</span></div>
+
+
+<span class="k">def</span> <span class="nf">_build_tree</span><span class="p">(</span><span class="n">list_of_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    | Internal function</span>
+<span class="sd">    | Build tree</span>
+
+<span class="sd">    :param list_of_data: list of BUs in the order for building</span>
+<span class="sd">    :type list_of_data: list</span>
+<span class="sd">    :rtype: MerkleTree()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">m_tree</span> <span class="o">=</span> <span class="n">MerkleTree</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">list_of_data</span><span class="p">:</span>
+        <span class="n">m_tree</span><span class="o">.</span><span class="n">append_entry</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m_tree</span>
+
+
+<span class="k">def</span> <span class="nf">_verify_consistency_proofs</span><span class="p">(</span><span class="n">consistency_proofs_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    | Internal function</span>
+<span class="sd">    | Verify if proofs are consistent</span>
+
+<span class="sd">    :param consistency_proofs_list: list of Proofs</span>
+<span class="sd">    :type consistency_proofs_list: list</span>
+<span class="sd">    :rtype: dict {&quot;success&quot;: Bool, &quot;exception&quot;: String}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">proofs</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">consistency_proofs_list</span><span class="p">,</span> <span class="n">consistency_proofs_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>  <span class="c1"># iterate in pairs (n and n+1)</span>
+        <span class="n">first_root</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">proofs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;root&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="s2">&quot;utf_8&quot;</span><span class="p">)</span>
+        <span class="n">second_root</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">proofs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;root&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">],</span> <span class="s2">&quot;utf_8&quot;</span><span class="p">)</span>
+        <span class="n">consistency_proof</span> <span class="o">=</span> <span class="n">proofs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;consistency_proof&#39;</span><span class="p">]</span>
+        <span class="n">consistency_proof</span> <span class="o">=</span> <span class="n">MerkleProof</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">consistency_proof</span><span class="p">)</span>
+        <span class="n">verification</span> <span class="o">=</span> <span class="n">verify_consistency_proof</span><span class="p">(</span><span class="n">first_root</span><span class="p">,</span> <span class="n">second_root</span><span class="p">,</span> <span class="n">consistency_proof</span><span class="p">)</span>  <span class="c1"># consistency verification</span>
+        <span class="k">if</span> <span class="n">verification</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s2">&quot;exception&quot;</span><span class="p">:</span> <span class="s2">&quot;Consistency proof is false&quot;</span><span class="p">}</span>  <span class="c1"># if verification fails return false, else continues</span>
+
+    <span class="c1"># if every verification passes return true</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">_compare_consistency_proofs_to_partial_roots</span><span class="p">(</span><span class="n">proofs</span><span class="p">,</span> <span class="n">roots</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    | Internal function</span>
+<span class="sd">    | Compare consistency proofs to partial roots</span>
+
+<span class="sd">    :param proofs: list of Proofs</span>
+<span class="sd">    :type proofs: list</span>
+<span class="sd">    :param roots: list of partial roots</span>
+<span class="sd">    :type roots: list</span>
+<span class="sd">    :rtype: Bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># For each root, iterate all proofs</span>
+    <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">is_partial_root_in_proofs</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># assume they don&#39;t match</span>
+        <span class="k">for</span> <span class="n">proof</span> <span class="ow">in</span> <span class="n">proofs</span><span class="p">:</span>    <span class="c1"># for each proof, check if they match</span>
+            <span class="k">if</span> <span class="n">root</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;root&quot;</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="ow">and</span> \
+                    <span class="n">root</span><span class="p">[</span><span class="s2">&quot;tree_size&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;root&quot;</span><span class="p">][</span><span class="s2">&quot;tree_size&quot;</span><span class="p">]</span> <span class="ow">and</span> \
+                    <span class="n">root</span><span class="p">[</span><span class="s2">&quot;signature&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;root&quot;</span><span class="p">][</span><span class="s2">&quot;signature&quot;</span><span class="p">]</span> <span class="ow">and</span> \
+                    <span class="n">root</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">proof</span><span class="p">[</span><span class="s2">&quot;root&quot;</span><span class="p">][</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]:</span>    <span class="c1"># if all properties match</span>
+                <span class="n">is_partial_root_in_proofs</span> <span class="o">=</span> <span class="kc">True</span>    <span class="c1"># set True</span>
+                <span class="k">break</span>   <span class="c1"># and skip to the next root</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_partial_root_in_proofs</span><span class="p">:</span>   <span class="c1"># if any root does not match any proof</span>
+            <span class="k">return</span> <span class="kc">False</span>    <span class="c1"># return false</span>
+
+    <span class="c1"># if no root is false, return true</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, LARC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
