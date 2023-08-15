@@ -16,7 +16,7 @@ Function verifies if a LOCAL tree is consistent. It makes the following
 3. For each local root, verify its consistency with the previous root
 
 
-How to use it:
+Usage:
 -------------------------
 
 First, get all global tree leafs. You can get it from TLmanager.
@@ -60,7 +60,7 @@ Function verifies if a GLOBAL tree is consistent. It makes the following:
 1. Verify if the consistency proofs match with the stored global roots
 2. Verify each consistency proof
 
-How to use it:
+Usage:
 -------------------------
 
 First, get the stored_global_roots. Usually, periodically monitors retrieves the latest global root on TL-Election. 

@@ -15,7 +15,7 @@ Verifies if a data entry is correctly registered in TL-Election. It verifies
 4. if the global root is equal to "trusted global root"; 
 
 
-How to use it:
+Usage:
 -------------------------
 
 First, get the data entry proof. You can request it to the TL-Election by passing the object id 
@@ -49,7 +49,7 @@ Finally, call the verification function.
 
 .. code-block:: python
 
-    result = verify_single_data(proof, global_root, data)
+    result = verify_data_entry(proof, global_root, data)
 
     # Return of function
         JSON with fields:

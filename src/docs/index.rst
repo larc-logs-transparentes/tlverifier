@@ -44,7 +44,7 @@ Usage
     data = tlverifier.get_data()                         # get data to verify (e.g., BU)
    
 
-    result = verify_single_data(proof, global_root, data)
+    result = verify_data_entry(proof, global_root, data)
 
 
 .. toctree::
