@@ -29,7 +29,7 @@ Installation
 
 .. code-block:: bash
 
-  pip install tlverifier
+   pip install tlverifier
 
 =================
 Usage 
@@ -38,20 +38,22 @@ Usage
 
    from tlverifier import tlverifier
 
-    # obs: using dummy functions
-    proof = tlverifier.get_proof()                       # get proof from the tlmanager
-    global_root = tlverifier.get_trusted_global_root()   # get trustable root (e.g., from a monitor)
-    data = tlverifier.get_data()                         # get data to verify (e.g., BU)
-   
+   # obs: using dummy functions
+   proof = tlverifier.get_proof()                       # get proof from the tlmanager
+   global_root = tlverifier.get_trusted_global_root()   # get trustable root (e.g., from a monitor)
+   data = tlverifier.get_data()                         # get data to verify (e.g., BU)
 
-    result = verify_data_entry(proof, global_root, data)
+
+   result = verify_data_entry(proof, global_root, data)
 
 
 .. toctree::
    :maxdepth: 0
    :hidden:
 
-   menu
+   Inclusion checks <inclusion-checks>
+   Consistency checks <consistency-checks>
+   References <modules>
 
 
 
