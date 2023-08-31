@@ -3,7 +3,7 @@ from src.tlverifier.merkle_functions.tl_functions import verify_data_entry, veri
 
 
 def test_inclusion_proof():
-    proof = get_dummie_proof()["local_tree"]["inclusion_proof"]    # incusion proof extracted from whole proof object
+    proof = get_dummie_proof()["data"]["inclusion_proof"]    # inclusion proof extracted from whole proof object
     root = get_dummie_local_root()
     data = get_dummie_data()   # raw data in bytes
     print(verify_inclusion_proof(proof, root, data))

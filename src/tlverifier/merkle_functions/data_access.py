@@ -115,13 +115,9 @@ def get_dummie_data():
 
 def _get_dummie_file_path(file_name):
     # To run locally
-    file_path = "../mock/mock_dev/v3/" + file_name  # use in development
+    # file_path = "../mock/mock_dev/v3/" + file_name  # use in development
 
     # To generate package
-    # file_path = pkg_resources.resource_filename('tlverifier', "/mock/mock_dev/v3/" + file_name)  # use in package
+    file_path = pkg_resources.resource_filename('tlverifier', "/mock/mock_dev/v3/" + file_name)  # use in package
 
     return file_path
-
-
-if __name__ == '__main__':
-    get_dummie_middle_last_roots_from_partial_global()

@@ -1,11 +1,11 @@
 {
   "status": "ok",
   "global_root": {
-    "value": "dced747635b86ea7dd0f3e457bc95f5fc44b2d2660bceec5896c7b94d78bb72d",
+    "value": "77e5ed2fbc6908eb48247b575ad3b65214ccaf05d294680b0d29e13d8a3de5dc",
     "tree_name": "global_tree",
     "tree_size": 6,
-    "signature": "4f89aaa5184040496661641b5fc4f276df08c8e2f1310a767ff4b10b4acbd4138108d6b7f82ac13f8ad9dceb342108e19fb94673ac3d420a2d2dd81cec640800",
-    "timestamp": "2023-06-02T22:10:28.906156"
+    "signature": "b30f041c3ebe425628539fc6851ef8cee77a76a09f54416e622badaeabc922e1828623e34412d602de33ad5a3c0e0efd3510e4c2feec4bb7fab8d9d202de3d0b",
+    "timestamp": "2023-08-20T20:26:56.336619"
   },
   "local_tree": {
     "local_root": {
@@ -15,7 +15,36 @@
     },
     "inclusion_proof": {
       "metadata": {
-        "timestamp": 1685744410,
+        "timestamp": 1693413660,
+        "algorithm": "sha256",
+        "encoding": "utf_8",
+        "security": true
+      },
+      "offset": 2,
+      "path": [
+        [
+          1,
+          "332baaef7c879136c6f74bd04a1a3bba8db336ab6139bf5a821e82d12e488716"
+        ],
+        [
+          -1,
+          "70490059416afaf57d032b303d61c53dd32419ec03b821a855a51428b773304f"
+        ],
+        [
+          -1,
+          "fc0a42aa2d31efb3a6245c98f7a69345d98883a50558d80bbb71184b671ea6f7"
+        ],
+        [
+          -1,
+          "7bc9533eddd2cac686edb8d66f7aff78aa0cac5a668e55a3120607862c33b9ea"
+        ]
+      ]
+    }
+  },
+  "data": {
+    "inclusion_proof": {
+      "metadata": {
+        "timestamp": 1693413660,
         "algorithm": "sha256",
         "encoding": "utf_8",
         "security": true
@@ -37,35 +66,6 @@
         [
           -1,
           "d2935bb8382e8cb379a6a776e686b54821f804febaf0979ac752c11e60dc89b0"
-        ]
-      ]
-    }
-  },
-  "data": {
-    "inclusion_proof": {
-      "metadata": {
-        "timestamp": 1685744410,
-        "algorithm": "sha256",
-        "encoding": "utf_8",
-        "security": true
-      },
-      "offset": 2,
-      "path": [
-        [
-          1,
-          "58fdb15dd1c1e8653e985601bfc159dae528b6514245c8c78758cdc9eb763e90"
-        ],
-        [
-          -1,
-          "bbe4c220f99257a317799d45095bb71970d04e4e0b50ce86e097ae2beb57acd0"
-        ],
-        [
-          -1,
-          "4474c15d9defa52074694863f6d91553cf70506625ed92c0fe746d05ed42dddc"
-        ],
-        [
-          -1,
-          "ab70cb4de674d1a1d19b3bbccd9fa9682243d6745adac3a2c80861b3235ffaab"
         ]
       ]
     }

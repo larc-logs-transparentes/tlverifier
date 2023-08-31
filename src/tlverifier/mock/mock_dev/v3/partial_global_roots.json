@@ -1,56 +1,51 @@
 {
+  "status": "ok",
   "roots": [
     {
       "status": "ok",
       "value": null
     },
     {
-      "status": "ok",
-      "value": "efdeac3f2bab6b742eb4eb5a30a4068b6c4710bd73fd58e83a2d4ddf2a069440",
+      "value": "3fdbe5f3f7c883a2dd97e4d5cf7ff32098cf39906ae91a10f20990ef0a180aff",
       "tree_name": "global_tree",
       "tree_size": 1,
-      "signature": "bbf7e55fc3e28ab38be11c9a1baee27e14651680ba33354ccac9ab77e95b3b5608ecbd52538013ee8882bf17291868d72dfc66cf0418fdaad2c6a3f72b7c7801",
-      "timestamp": "2023-06-20T12:20:12.573073"
+      "signature": "27c0e2d6d436b0a3afd0296a1c002c2038bf7d79e76c13b4629f20ec5d3984d498f67bd05644b8ea7393dbfdba094bdafb85e9082d84271c7fb6748a92ba360f",
+      "timestamp": "2023-08-20T15:08:17.970798"
     },
     {
-      "status": "ok",
-      "value": "58fdb15dd1c1e8653e985601bfc159dae528b6514245c8c78758cdc9eb763e90",
+      "value": "332baaef7c879136c6f74bd04a1a3bba8db336ab6139bf5a821e82d12e488716",
       "tree_name": "global_tree",
       "tree_size": 2,
-      "signature": "e7944a1b37804d321e7265a48d06cc4c1ceb5429bcfa851d63a22246d459fa47a29cc8c384148cb89606dd62f518c5bc480f19f5beb687358e7a9ce7bc870904",
-      "timestamp": "2023-06-20T12:20:15.757602"
+      "signature": "bae83fd6b3dd68ff246a042120defc401cc207f864986a886438eedf4280ceea14e43d7f1ddbf5f2e8684ec22abc5ae6f8a7b1b2757742107fbd4b107e6d360a",
+      "timestamp": "2023-08-20T15:10:33.536441"
     },
     {
-      "status": "ok",
-      "value": "71819523a4a7d3caa5e8bddfc2cdfc3ee0e969ae23eee0d183ebdf4a430ab7e8",
+      "value": "55e95ce00d9bbd5e840959f8115ffe3f16f04fe4fbb2c2eaf9fe92642392b61e",
       "tree_name": "global_tree",
       "tree_size": 3,
-      "signature": "7308060a332b4b02af44554ad7450e2c71495b74b7b6fb084f70378477c4a4aa2fe7c0d52a8f2bca7baaea2ca1bb8e8fcd53249d3c313ac834ed3defe5bf4d0f",
-      "timestamp": "2023-06-20T12:20:19.553394"
+      "signature": "a8f24b3a5a8777cbcf0efcb1f08dff1a7bde49ec7698843f326416fa5fd680f0ffec6be5667615020c9995803276148d5f899f7186afa4caf2bf139907868703",
+      "timestamp": "2023-08-20T15:11:06.532132"
     },
     {
-      "status": "ok",
-      "value": "340e7be7a0775255aa9c6d8e59308b0e19aac2035a65bb9c4dd39535155d8068",
+      "value": "6efd3453d8e9d5cf2bb444abe99582cfc11584b21e5d54b212f5685fda8243ff",
       "tree_name": "global_tree",
       "tree_size": 4,
-      "signature": "674aa41c4f00f24778eb4570413542d3438fde87571fe22da58793bdde9febf71b419d62a73e2611e6e6fc8c84ad295d6e0642fb0062176ea2b2ff6dd7593f00",
-      "timestamp": "2023-06-20T12:20:24.906798"
+      "signature": "17b68fc98cdbe003a4ab366c4062186c961eba43a3bccc77d99059374e861ea8b01c16fb78def7d62090e807a11ee42e5d8267d65aeb48d069684f685add4608",
+      "timestamp": "2023-08-20T20:25:56.752301"
     },
     {
-      "status": "ok",
-      "value": "2beef04b3f227ae24376731b216b2b5c78a9d8d647878d97ac891130e9125f79",
+      "value": "0f4f7797be66e2540502c68c30a6a07c45e3aaa48414c3903eb2c45301fe7263",
       "tree_name": "global_tree",
       "tree_size": 5,
-      "signature": "ea3065b00a3e1a7d84d460f2613054d920a1357775be85d1e854747be299a008cb728ef990cb4047c8f95b1aadd248b37e8a019cb5ddf89c1db4b760afdd0b04",
-      "timestamp": "2023-06-20T12:20:44.767473"
+      "signature": "00dbbfb261448dd1b2cbb3d26359cace197c7c37865fd41508c3a49a6efb6f3e94d1115e5b900a008853a8003207f654982c321c4bedf002da78bb5c7a73ef02",
+      "timestamp": "2023-08-20T20:26:38.459848"
     },
     {
-      "status": "ok",
-      "value": "dced747635b86ea7dd0f3e457bc95f5fc44b2d2660bceec5896c7b94d78bb72d",
+      "value": "77e5ed2fbc6908eb48247b575ad3b65214ccaf05d294680b0d29e13d8a3de5dc",
       "tree_name": "global_tree",
       "tree_size": 6,
-      "signature": "4f89aaa5184040496661641b5fc4f276df08c8e2f1310a767ff4b10b4acbd4138108d6b7f82ac13f8ad9dceb342108e19fb94673ac3d420a2d2dd81cec640800",
-      "timestamp": "2023-06-20T12:20:57.572816"
+      "signature": "b30f041c3ebe425628539fc6851ef8cee77a76a09f54416e622badaeabc922e1828623e34412d602de33ad5a3c0e0efd3510e4c2feec4bb7fab8d9d202de3d0b",
+      "timestamp": "2023-08-20T20:26:56.336619"
     }
   ]
 }
