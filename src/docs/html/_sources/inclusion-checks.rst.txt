@@ -24,7 +24,7 @@ First, get the data entry proof. You can request it to the TL-Election by passin
 .. code-block:: python
 
     # obs: using dummy functions
-    proof = tlverifier.get_proof()              
+    proof = tlverifier.get_dummie_proof()
 
 
 
@@ -32,7 +32,7 @@ Then, get a trusted global root. You usually get it from a monitor, which period
 
 .. code-block:: python
 
-    global_root = tlverifier.get_trusted_global_root()  
+    global_root = tlverifier.get_dummie_trusted_global_root()
     # global_root == "a1b2c3d4e5f6g7"
 
 
@@ -40,7 +40,7 @@ Next, get the data entry you want to verify
 
 .. code-block:: python
 
-    data = tlverifier.get_data()  
+    data = tlverifier.get_dummie_data()
     # data == b"xyz"           
    
 

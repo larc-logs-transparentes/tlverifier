@@ -23,7 +23,7 @@ First, get all global tree leafs. You can get it from TLmanager.
 
 .. code-block::
 
-    all_leaf_global = tlverifier.get_all_leaf_global_tree()
+    all_leaf_global = tlverifier.get_dummie_all_leaf_global_tree()
 
 
 
@@ -31,7 +31,7 @@ Then, get all consistency proofs, saved on TLmanager
 
 .. code-block::
 
-    all_consistency = tlverifier.get_all_consistency_proof()
+    all_consistency = tlverifier.get_dummie_all_consistency_proof()
 
 
 
@@ -40,7 +40,7 @@ You can also periodically retrive the global root from TL-Election.
 
 .. code-block::
 
-    global_root = tlverifier.get_trusted_global_root()
+    global_root = tlverifier.get_dummie_trusted_global_root()
     # global_root == "a1b2c3d4e5f6g7"
 
 
@@ -68,14 +68,14 @@ It is not necessary to have *every* published global root.
 
 .. code-block::
 
-    stored_global_roots = tlverifier.get_partial_global_roots()
+    stored_global_roots = tlverifier.get_dummie_partial_global_roots()
 
 
 Then, get the consistency_proofs. Those proofs are provided by the TLmanager
 
 .. code-block::
 
-    consistency_proofs = tlverifier.get_all_consistency_proof_global()
+    consistency_proofs = tlverifier.get_dummie_all_consistency_proof_global()
 
 
 
