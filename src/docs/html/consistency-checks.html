@@ -43,22 +43,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="menu.html">Inclusion checks</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="inclusion-checks.html"> Inclusion checks</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#"> Consistency checks</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#verifying-local-tree-history-consistency">Verifying local tree history consistency</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#usage">Usage:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inclusion-checks.html">Inclusion checks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Consistency checks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#verifying-local-tree-history-consistency">Verifying local tree history consistency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage:</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#verifying-global-tree-history-consistency">Verifying global tree history consistency</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Usage:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verifying-global-tree-history-consistency">Verifying global tree history consistency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Usage:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="modules.html"> References</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">References</a></li>
 </ul>
 
         </div>
@@ -75,7 +72,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="menu.html">Inclusion checks</a></li>
       <li class="breadcrumb-item active">Consistency checks</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/consistency-checks.rst.txt" rel="nofollow"> View page source</a>
@@ -101,16 +97,16 @@ There are two functions: one related to local trees, and one related to global t
 <section id="usage">
 <h3>Usage:<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
 <p>First, get all global tree leafs. You can get it from TLmanager.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">all_leaf_global</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_all_leaf_global_tree</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">all_leaf_global</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_all_leaf_global_tree</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Then, get all consistency proofs, saved on TLmanager</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">all_consistency</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_all_consistency_proof</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">all_consistency</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_all_consistency_proof</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Then, get a trusted global root. You usually get it from a monitor.
 You can also periodically retrive the global root from TL-Election.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">global_root</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_trusted_global_root</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">global_root</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_trusted_global_root</span><span class="p">()</span>
 <span class="c1"># global_root == &quot;a1b2c3d4e5f6g7&quot;</span>
 </pre></div>
 </div>
@@ -132,11 +128,11 @@ You can also periodically retrive the global root from TL-Election.</p>
 <h3>Usage:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>First, get the stored_global_roots. Usually, periodically monitors retrieves the latest global root on TL-Election.
 It is not necessary to have <em>every</em> published global root.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stored_global_roots</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_partial_global_roots</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stored_global_roots</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_partial_global_roots</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Then, get the consistency_proofs. Those proofs are provided by the TLmanager</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">consistency_proofs</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_all_consistency_proof_global</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">consistency_proofs</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_all_consistency_proof_global</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Finally, call the verification function.</p>

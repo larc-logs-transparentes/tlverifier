@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Inclusion checks" href="menu.html" /> 
+    <link rel="next" title="Inclusion checks" href="inclusion-checks.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,7 +42,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="menu.html">Inclusion checks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inclusion-checks.html">Inclusion checks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="consistency-checks.html">Consistency checks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">References</a></li>
 </ul>
 
         </div>
@@ -78,7 +80,7 @@
 Works with <a class="reference external" href="https://github.com/larc-logs-transparentes/logs-transparentes/tree/main/tlmanager">TLmanager</a>.</p>
 <section id="installation">
 <h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tlverifier
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>tlverifier
 </pre></div>
 </div>
 </section>
@@ -86,13 +88,13 @@ Works with <a class="reference external" href="https://github.com/larc-logs-tran
 <h3>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tlverifier</span> <span class="kn">import</span> <span class="n">tlverifier</span>
 
- <span class="c1"># obs: using dummy functions</span>
- <span class="n">proof</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_proof</span><span class="p">()</span>                       <span class="c1"># get proof from the tlmanager</span>
- <span class="n">global_root</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_trusted_global_root</span><span class="p">()</span>   <span class="c1"># get trustable root (e.g., from a monitor)</span>
- <span class="n">data</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>                         <span class="c1"># get data to verify (e.g., BU)</span>
+<span class="c1"># obs: using dummy functions</span>
+<span class="n">proof</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_proof</span><span class="p">()</span>                              <span class="c1"># get proof from the tlmanager</span>
+<span class="n">global_root</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_trusted_global_root</span><span class="p">()</span>   <span class="c1"># get trustable root (e.g., from a monitor)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">tlverifier</span><span class="o">.</span><span class="n">get_dummie_data</span><span class="p">()</span>                                <span class="c1"># get data to verify (e.g., BU)</span>
 
 
- <span class="n">result</span> <span class="o">=</span> <span class="n">verify_data_entry</span><span class="p">(</span><span class="n">proof</span><span class="p">,</span> <span class="n">global_root</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">verify_data_entry</span><span class="p">(</span><span class="n">proof</span><span class="p">,</span> <span class="n">global_root</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
@@ -113,7 +115,7 @@ Works with <a class="reference external" href="https://github.com/larc-logs-tran
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="menu.html" class="btn btn-neutral float-right" title="Inclusion checks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="inclusion-checks.html" class="btn btn-neutral float-right" title="Inclusion checks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
