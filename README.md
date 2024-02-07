@@ -1,5 +1,7 @@
 # tlverifier
 
+### documentation
+https://tlverifier.readthedocs.io/en/latest/
 
 #### installation: 
 pip install --extra-index-url https://test.pypi.org/simple/ tlverifier
